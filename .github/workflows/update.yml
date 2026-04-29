@@ -1,0 +1,31 @@
+name: Update Hagezi Blocklists
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch and convert Pro Mini
+        run: |
+          curl -s https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.mini-onlydomains.txt \
+            | grep -v '^\s*#\|^\s*$' \
+            | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > pro-mini.yaml
+
+      - name: Fetch and convert Pro Plus Mini
+        run: |
+          curl -s https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.plus.mini-onlydomains.txt \
+            | grep -v '^\s*#\|^\s*$' \
+            | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > pro-plus-mini.yaml
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add pro-mini.yaml pro-plus-mini.yaml
+          git diff --staged --quiet || git commit -m "Update blocklists $(date -u +%Y-%m-%d)"
+          git push
