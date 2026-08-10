@@ -15,13 +15,13 @@ jobs:
 
       - name: Fetch and convert Pro Mini
         run: |
-          curl -s https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.mini-onlydomains.txt \
+          curl -s https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/pro.mini-onlydomains.txt \
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > pro-mini.yaml
 
       - name: Fetch and convert Pro Plus Mini
         run: |
-          curl -s https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.plus.mini-onlydomains.txt \
+          curl -s https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/pro.plus.mini-onlydomains.txt \
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > pro-plus-mini.yaml
 
