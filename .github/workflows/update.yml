@@ -15,19 +15,19 @@ jobs:
 
       - name: Fetch and convert Pro Mini
         run: |
-          curl -s https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/pro.mini-onlydomains.txt \
+          curl -s https://hagezi-mirror.dnsbunker.org/wildcard/pro.mini-onlydomains.txt \
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > pro-mini.yaml
 
       - name: Fetch and convert Pro Plus Mini
         run: |
-          curl -s https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/pro.plus.mini-onlydomains.txt \
+          curl -s https://hagezi-mirror.dnsbunker.org/wildcard/pro.plus.mini-onlydomains.txt \
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > pro-plus-mini.yaml
 
       - name: Fetch and convert Apple Native Tracker
         run: |
-          curl -sL https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/native.apple-onlydomains.txt \
+          curl -sL https://hagezi-mirror.dnsbunker.org/wildcard/native.apple-onlydomains.txt \
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > apple-native-tracker.yaml
 
