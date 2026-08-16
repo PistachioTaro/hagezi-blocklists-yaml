@@ -31,10 +31,16 @@ jobs:
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > apple-native-tracker.yaml
 
+      - name: Fetch and convert Multi Light
+        run: |
+          curl -sL https://hagezi-mirror.dnsbunker.org/wildcard/light-onlydomains.txt \
+            | grep -v '^\s*#\|^\s*$' \
+            | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > multi-light.yaml
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add pro-mini.yaml pro-plus-mini.yaml apple-native-tracker.yaml
+          git add pro-mini.yaml pro-plus-mini.yaml apple-native-tracker.yaml multi-light.yaml
           git diff --staged --quiet || git commit -m "Update blocklists $(date -u +%Y-%m-%d)"
           git push
