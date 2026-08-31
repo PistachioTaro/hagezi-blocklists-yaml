@@ -30,6 +30,7 @@ payload:
   - '+.partiality.itunes.apple.com'
   - '+.msc-dct-prod.msc.apple.com'
   - '+.fbs.smoot.apple.com'
+  - '+.ads.apple.com'
   - '+.advertising.apple.com'
   - '+.advp.apple.com'
   - '+.analytics-events.apple.com'
