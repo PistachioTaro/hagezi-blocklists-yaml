@@ -37,10 +37,16 @@ jobs:
             | grep -v '^\s*#\|^\s*$' \
             | { echo "payload:"; sed "s/^/  - '+./; s/$/'/" ; } > multi-light.yaml
 
+      - name: Fetch and convert OISD Small
+        run: |
+          curl -sL https://raw.githubusercontent.com/sjhgvr/oisd/refs/heads/main/domainswild2_small.txt \
+            | grep -v '^\s*#\|^\s*$' \
+            | { echo "payload:"; sed -E "s/^\*?\.?//; s/^/  - '+./; s/$/'/" ; } > oisd-small.yaml
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add pro-mini.yaml pro-plus-mini.yaml apple-native-tracker.yaml multi-light.yaml
+          git add pro-mini.yaml pro-plus-mini.yaml apple-native-tracker.yaml multi-light.yaml oisd-small.yaml
           git diff --staged --quiet || git commit -m "Update blocklists $(date -u +%Y-%m-%d)"
           git push
