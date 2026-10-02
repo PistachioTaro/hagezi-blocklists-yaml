@@ -16,8 +16,6 @@ payload:
   - '+.smoot-feedback.v.aaplimg.com'
   - '+.supportmetrics.v.aaplimg.com'
   - '+.xp.v.aaplimg.com'
-  - '+.ab.apple.com.akadns.net'
-  - '+.diagassets-lb.apple.com.akadns.net'
   - '+.diagnostics.apple.com.akadns.net'
   - '+.iadsdk.apple.com.akadns.net'
   - '+.idiagnostics.apple.com.akadns.net'
